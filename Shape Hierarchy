@@ -1,0 +1,216 @@
+// create a abstract superclass
+abstract  public class Shapes {
+
+	public String colorString;
+	
+	public Shapes() {
+	}
+	public void setColor(String c) {
+		colorString = c;
+	}
+	public String getColor() {
+		return colorString;
+	}
+	abstract public double getArea();	
+}
+
+//------------------------TwoDimensionalShape-----------------------------------
+ public class TwoDimensionalShape extends Shapes
+ {
+	 	static double length, width, radius, height;
+	 
+		public TwoDimensionalShape(double d, double r, double h, double radiusDouble) {
+			length = d;
+			width = r;
+			height=h;
+			radius=radiusDouble;
+		}
+				
+		public double getArea() {
+			return 0;
+		}
+		
+		public static void print() {
+			System.out.println("point: " + length + ", " + width+", "+height+", "+radius);
+		}} 
+		
+		//---------------------ThreeDimensionalShape---------------------------------------
+		public class ThreeDimensionalShape extends Shapes
+	 {
+		 	static double length, width, height, radius, bottomArea;
+		 
+			public ThreeDimensionalShape(double d, double r, double h, double radiusDouble, double bottomAreaDouble) {
+				length = d;
+				width = r;
+				height = h;
+				radius=radiusDouble;
+				bottomArea=bottomAreaDouble;
+			}
+					
+			public double getArea() {
+				return 0;
+			}
+			
+			public double getVolume() {
+				return 0;
+			}
+			
+			public static void print() {
+				System.out.println("point: " + length + ", " + width+", "+height+", "+radius+", "+bottomArea);
+			}}
+//------------------------------------------------------------------------
+public class Rectangle extends TwoDimensionalShape{
+
+	public Rectangle()
+    {
+        super(length,width, height, radius); // the key "super" calls to parameter constructor of superclass "TwoDimensionalShape"
+        
+    }
+	public double getArea() {
+		
+		return length*width ;
+	}
+	
+}
+//-------------------------------------------------------------------------
+
+public class Triangle extends TwoDimensionalShape {
+	
+	public Triangle()
+    {
+        super(length,width, height, radius); // the key "super" calls to parameter constructor of superclass "TwoDimensionalShape"
+        
+    }
+	
+public double getArea() {
+		
+		return (length*height)/2 ;
+	}
+
+}
+//----------------------------------------------------------------------------
+public class Circle extends TwoDimensionalShape{
+
+	public Circle()
+    {
+        super(length,width, height, radius); // the key "super" calls to parameter constructor of superclass "TwoDimensionalShape"
+        
+    }
+	
+public double getArea() {
+		
+		return (3.14*radius*radius) ;
+	}
+
+}
+//-----------------------------------------------------------------------------
+public class Sphere extends ThreeDimensionalShape{
+	
+	public Sphere()
+    {
+        super(length,width,height,radius, bottomArea); // the key "super" calls to parameter constructor of superclass "ThreeDimensionalShape"
+        
+    }
+	public double getArea() {
+		
+		return (4*3.14*radius*radius*radius)/3 ;
+	}
+
+}
+//------------------------------------------------------------------------------
+public class Cube extends ThreeDimensionalShape{
+	
+	public Cube()
+    {
+        super(length,width,height,radius, bottomArea); // the key "super" calls to parameter constructor of superclass "ThreeDimensionalShape"
+        
+    }
+	public double getArea() {
+		
+		return (length*width*height) ;
+	}
+}
+//----------------------------------------------------------------------------
+public class Tetrahedron extends ThreeDimensionalShape{
+	
+	public Tetrahedron()
+    {
+        super(length,width,height,radius, bottomArea); // the key "super" calls to parameter constructor of superclass "ThreeDimensionalShape"
+        
+    }
+	public double getArea() {
+		
+		return (bottomArea*height) ;
+	}
+}
+//---------------------------------ShapesTest---------------------------------------------
+
+import java.awt.Color;
+import javax.swing.JFrame;
+//-----------------------------------------
+
+public class ShapesTest {
+	
+		 public static void main( String[] args )
+		 {
+			  double areaDouble1, areaDouble2;			  
+			  double areaDouble3, areaDouble4, areaDouble5, areaDouble6;		
+			 
+			//-----initialize and create an object of the class TwoDimensionalShape
+			TwoDimensionalShape myTwoDimenShape = new TwoDimensionalShape(4,5,2,8);
+			myTwoDimenShape.print();
+			
+			//-----to calculate the area of the Rectangle
+			Rectangle myRectangle=new Rectangle();
+			areaDouble4=myRectangle.getArea();
+			System.out.println(areaDouble4);
+			
+			//-----to calculate the area of the Triangle
+			Triangle myTriangle=new Triangle();
+			areaDouble5=myTriangle.getArea();
+			System.out.println(areaDouble5);
+			
+			//-----to calculate the area of the circle			
+			Circle myCircle=new Circle();
+			areaDouble6=myCircle.getArea();
+			System.out.println(areaDouble6);		
+			System.out.println();	
+						
+			//-----initialize and create an object of the class ThreeDimensionalShape
+			System.out.println();
+			ThreeDimensionalShape myThreeDimenShape = new ThreeDimensionalShape(4,5,2,8,12.3);
+			myThreeDimenShape.print();
+			
+			//-----to calculate the area of the Sphere
+			Sphere mySphere=new Sphere();
+			areaDouble1=mySphere.getArea();
+			System.out.println(areaDouble1);
+			
+			//-----to calculate the area of the myCube
+			Cube myCube=new Cube();
+			areaDouble2=myCube.getArea();
+			System.out.println(areaDouble2);
+			
+			//-----to calculate the area of the Tetrahedron			
+			Tetrahedron myTetrahedron=new Tetrahedron();
+			areaDouble3=myTetrahedron.getArea();
+			System.out.println(areaDouble3);		
+			System.out.println();	
+			
+			String[] yShape = { "Sphere", "Cube", "Tetrahedron", "Rectangle", "Triangle", "Circle"};
+			for ( int count = 0; count < yShape.length; count++ )
+			{
+				if (count==1) 
+					System.out.println("This is a Sphere. The area of the Sphere: "+areaDouble1);
+				else if (count==2)
+					System.out.println("This is a Cube. The area of the Cube: "+areaDouble2);
+				else if (count==3)
+					System.out.println("This is a Tetrahedron. The area of the Tetrahedron: "+areaDouble3);
+				else if (count==4)
+					System.out.println("This is a Rectangle. The area of the Rectangle: "+areaDouble4);
+				else if (count==5)
+					System.out.println("This is a Triangle. The area of the Triangle: "+areaDouble5);
+				else 
+					System.out.println("This is a Circle. The area of the Circle: "+areaDouble6);
+				
+			}}} 
